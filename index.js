@@ -55,7 +55,7 @@ app.whenReady().then(() => {
     console.log(secondDisplay)
 
     const primaryBounds = primaryDisplay.bounds
-    const secondBounds = secondDisplay.bounds
+    // const secondBounds = secondDisplay.bounds
 
 
     const tv = createTVApp(primaryBounds.x, primaryBounds.y)
