@@ -42,6 +42,11 @@ ipcMain.on('finger', (event) => {
 })
 
 app.whenReady().then(() => {
+    app.on('window-all-closed', () => {
+        if (process.platform !== 'darwin') {
+            app.quit()
+        }
+    })
     // const displays = screen.getAllDisplays()
     const primaryDisplay = screen.getPrimaryDisplay()
     const secondDisplay = screen.getAllDisplays().find(d => d.id != primaryDisplay.id)
