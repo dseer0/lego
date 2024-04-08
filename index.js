@@ -1,15 +1,30 @@
 const { app, BrowserWindow, screen, ipcMain } = require('electron')
 const path = require('node:path')
+var Gpio = require('onoff').Gpio;
+var pushButton = new Gpio(2, 'in', 'falling');
+
+pushButton.watch(function (err, value) { //Watch for hardware interrupts on pushButton GPIO, specify callback function
+    if (err) { //if an error
+        console.error('There was an error', err); //output error message to console
+        return;
+    }
+
+    tv.webContents.send('coin')
+    rasp.webContents.send('coin')
+
+});
 
 const createRaspApp = (x, y) => {
     const win = new BrowserWindow({
-        width: 1024,
-        height: 600,
+        width: 600,
+        height: 1024,
         x: x,
         y: y,
-        // kiosk: true,
+        kiosk: true,
         autoHideMenuBar: true,
+        frame: false,
         resizable: false,
+        fullscreen: true,
         webPreferences: {
             preload: path.join(__dirname, 'RaspPreload.js')
         }
