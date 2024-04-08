@@ -21,8 +21,8 @@ const createRaspApp = (x, y) => {
 
 const createTVApp = (x, y) => {
     const win = new BrowserWindow({
-        width: 1920,
-        height: 1080,
+        width: 1080,
+        height: 1920,
         x: x,
         y: y,
         // kiosk: true,
