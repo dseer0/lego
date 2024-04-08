@@ -55,18 +55,18 @@ app.whenReady().then(() => {
     console.log(secondDisplay)
 
     const primaryBounds = primaryDisplay.bounds
-    // const secondBounds = secondDisplay.bounds
+    const secondBounds = secondDisplay.bounds
 
 
-    const tv = createTVApp(primaryBounds.x, primaryBounds.y)
-    // const rasp = createRaspApp(secondBounds.x, secondBounds.y)
-    const rasp = createRaspApp(primaryBounds.x, primaryBounds.y) // for dev
+    const tv = createTVApp(600, 0)
+    const rasp = createRaspApp(0, 0)
+    // const rasp = createRaspApp(primaryBounds.x, primaryBounds.y) // for dev
 
 
-    setTimeout((() => {
-        tv.webContents.send('coin')
-        rasp.webContents.send('coin')
-    }), 3000)
+    // setTimeout((() => {
+    //     tv.webContents.send('coin')
+    //     rasp.webContents.send('coin')
+    // }), 3000)
 
     ipcMain.on('finger', (event) => {
         tv.webContents.send('finger')
