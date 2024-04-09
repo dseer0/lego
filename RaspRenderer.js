@@ -39,7 +39,10 @@ window.electronAPI.onCoin(() => {
 
 
 const putFingerImg = document.getElementById(Screens.PutFinger)
-putFingerImg.addEventListener('click', () => {
+putFingerImg.addEventListener('mousedown', () => onPress())
+putFingerImg.addEventListener('touchstart', () => onPress())
+
+const onPress = () => {
     console.log("clicked!")
     if (currentScreen == Screens.PutFinger) {
         window.electronAPI.finger()
@@ -48,4 +51,4 @@ putFingerImg.addEventListener('click', () => {
             switchToScreen(Screens.SelectingCharacter)
         }, 3000)
     }
-})
+}
