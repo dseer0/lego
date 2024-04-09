@@ -32,11 +32,12 @@ const createRaspApp = (x, y) => {
         height: 1024,
         x: x,
         y: y,
-        // kiosk: true,
+        kiosk: true,
         autoHideMenuBar: true,
         frame: false,
+        fullscreen: true,
+        alwaysOnTop: true,
         resizable: false,
-        // fullscreen: true,
         webPreferences: {
             preload: path.join(__dirname, 'RaspPreload.js')
         }
@@ -53,9 +54,12 @@ const createTVApp = (x, y) => {
         x: x,
         y: y,
         // kiosk: true,
+        kiosk: true,
         autoHideMenuBar: true,
-        resizable: false,
         frame: false,
+        fullscreen: true,
+        alwaysOnTop: true,
+        resizable: false,
         webPreferences: {
             preload: path.join(__dirname, 'TvPreload.js')
         }
