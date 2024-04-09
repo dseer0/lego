@@ -8,3 +8,12 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
 
 
+/*
+- 2 ekrany
+- animacja
+- tlo z postaci usunac
+- wylosowano postac 
+- kiosk
+- przy starcie uruchamianie
+
+*/
