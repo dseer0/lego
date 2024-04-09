@@ -37,6 +37,15 @@ const switchToSelectingChar = () => {
 const switchToSelectedChar = () => {
     hideAll()
     showScreen(Screens.SelectedCharacter)
+    function randomIntFromInterval(min, max) { // min and max included 
+        return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
+    const rndInt = randomIntFromInterval(1, 49)
+
+    document.getElementById('wybranapostac').src = "imgs/postaciev2/" + rndInt + ".png";
+    document.getElementById('wybranapostac').style.display = "block";
+
     currentScreen = Screens.SelectedCharacter
 
 

@@ -26,6 +26,14 @@
     margin-right: 20px;
 }
 
+.postac {
+    width: 500;
+    height: 100%;
+    position: absolute;
+    left: 400;
+    top: 400;
+}
+
 .logos:before,
 .logos:after {
     position: absolute;
