@@ -25,6 +25,8 @@ let doOnce = false
 ekspres.get("/gotMoney", (req, res) => {
     if (!doOnce) {
         console.log('Got it!')
+        tv.webContents.send('coin')
+        rasp.webContents.send('coin')
         doOnce = true
     }
     setTimeout(() => {
