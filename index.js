@@ -24,19 +24,7 @@ function enableWebServer() {
 enableWebServer();
 
 let doOnce = false
-ekspres.get("/gotMoney", (req, res) => {
-    if (!doOnce) {
-        console.log('Got it!')
-        tv.webContents.send('coin')
-        rasp.webContents.send('coin')
-        doOnce = true
-    }
-    setTimeout(() => {
-        doOnce = false
-    }, 1500)
 
-    return res.json({ "status": true })
-})
 
 const createRaspApp = (x, y) => {
     const win = new BrowserWindow({
@@ -102,10 +90,10 @@ app.whenReady().then(() => {
     // const rasp = createRaspApp(primaryBounds.x, primaryBounds.y) // for dev
 
 
-    setTimeout((() => {
-        tv.webContents.send('coin')
-        rasp.webContents.send('coin')
-    }), 3000)
+    // setTimeout((() => {
+    //     tv.webContents.send('coin')
+    //     rasp.webContents.send('coin')
+    // }), 3000)
 
     //na malym trwa losowanie
     //losowanie zakończone
@@ -123,4 +111,18 @@ app.whenReady().then(() => {
     rasp.webContents.on('console-message', (event, level, message, line, sourceId) => {
         console.log(message + " " + sourceId + " (" + line + ")");
     });
+
+    ekspres.get("/gotMoney", (req, res) => {
+        if (!doOnce) {
+            console.log('Got it!')
+            tv.webContents.send('coin')
+            rasp.webContents.send('coin')
+            doOnce = true
+        }
+        setTimeout(() => {
+            doOnce = false
+        }, 1500)
+
+        return res.json({ "status": true })
+    })
 })
