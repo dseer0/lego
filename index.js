@@ -55,6 +55,7 @@ const createTVApp = (x, y) => {
         // kiosk: true,
         autoHideMenuBar: true,
         resizable: false,
+        frame: false,
         webPreferences: {
             preload: path.join(__dirname, 'TvPreload.js')
         }
