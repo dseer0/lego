@@ -1,18 +1,38 @@
 const { app, BrowserWindow, screen, ipcMain } = require('electron')
 const path = require('node:path')
-var Gpio = require('onoff').Gpio;
-var pushButton = new Gpio(2, 'in', 'falling');
+// var Gpio = require('onoff').Gpio;
+// var pushButton = new Gpio(2, 'in', 'falling');
 
-pushButton.watch(function (err, value) { //Watch for hardware interrupts on pushButton GPIO, specify callback function
-    if (err) { //if an error
-        console.error('There was an error', err); //output error message to console
-        return;
+const express = require('express');
+const http = require('http')
+const cors = require('cors');
+
+const port = 8999;
+const ekspres = express();
+ekspres.use(cors());
+
+function enableWebServer() {
+    console.log("Enabling Web Server ....")
+    server = ekspres.listen(port, () => {
+        console.log(`Web Server Enabled! Listening at port: ${port}`)
+        // callback(null, true)
+    });
+}
+
+enableWebServer();
+
+let doOnce = false
+ekspres.get("/gotMoney", (req, res) => {
+    if (!doOnce) {
+        console.log('Got it!')
+        doOnce = true
     }
+    setTimeout(() => {
+        doOnce = false
+    }, 1500)
 
-    tv.webContents.send('coin')
-    rasp.webContents.send('coin')
-
-});
+    return res.json({ "status": true })
+})
 
 const createRaspApp = (x, y) => {
     const win = new BrowserWindow({
