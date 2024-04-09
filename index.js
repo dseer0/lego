@@ -95,10 +95,10 @@ app.whenReady().then(() => {
     // const rasp = createRaspApp(primaryBounds.x, primaryBounds.y) // for dev
 
 
-    setTimeout((() => {
-        tv.webContents.send('coin')
-        rasp.webContents.send('coin')
-    }), 3000)
+    // setTimeout((() => {
+    //     tv.webContents.send('coin')
+    //     rasp.webContents.send('coin')
+    // }), 3000)
 
     //na malym trwa losowanie
     //losowanie zakończone
