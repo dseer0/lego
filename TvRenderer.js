@@ -2,7 +2,8 @@ const Screens = {
     TossCoin: 'TossCoin',
     PutFinger: 'PutFinger',
     WaitGettingInfo: 'WaitGettingInfo',
-    SelectingCharacter: 'SelectingCharacter'
+    SelectingCharacter: 'SelectingCharacter',
+    SelectedCharacter: 'SelectedCharacter'
 };
 
 var currentScreen = Screens.TossCoin
@@ -32,6 +33,14 @@ const switchToSelectingChar = () => {
     document.getElementById('character-carousel').style.display = "block";
 
 }
+
+const switchToSelectedChar = () => {
+    hideAll()
+    showScreen(Screens.SelectedCharacter)
+    currentScreen = Screens.SelectedCharacter
+
+
+}
 //--------------------------------------
 
 
@@ -50,6 +59,12 @@ window.electronAPI.onFinger(() => {
         switchToScreen(Screens.WaitGettingInfo)
         setTimeout(() => {
             switchToSelectingChar()
+            setTimeout(() => {
+                switchToSelectedChar()
+                setTimeout(() => {
+                    switchToScreen(Screens.TossCoin)
+                }, 10000)
+            }, 5000)
         }, 5000)
     }
 })

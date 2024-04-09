@@ -2,7 +2,8 @@ const Screens = {
     Logo: 'Logo',
     PutFinger: 'PutFinger',
     FingerReceived: 'FingerReceived',
-    SelectingCharacter: 'SelectingCharacter'
+    SelectingCharacter: 'SelectingCharacter',
+    SelectedCharacter: 'SelectedCharacter'
 };
 
 var currentScreen = Screens.Logo
@@ -56,6 +57,15 @@ const onPress = () => {
 
         setTimeout(() => {
             switchToScreen(Screens.SelectingCharacter)
+
+            setTimeout(() => {
+                switchToScreen(Screens.SelectedCharacter)
+                setTimeout(() => {
+                    switchToScreen(Screens.Logo)
+
+                }, 10000)
+            }, 5000)
+
         }, 5000)
     }
 }
