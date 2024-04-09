@@ -11,6 +11,8 @@ const port = 8999;
 const ekspres = express();
 ekspres.use(cors());
 
+app.disableHardwareAcceleration()
+
 function enableWebServer() {
     console.log("Enabling Web Server ....")
     server = ekspres.listen(port, () => {
@@ -104,6 +106,9 @@ app.whenReady().then(() => {
         tv.webContents.send('coin')
         rasp.webContents.send('coin')
     }), 3000)
+
+    //na malym trwa losowanie
+    //losowanie zakończone
 
     ipcMain.on('finger', (event) => {
         tv.webContents.send('finger')
