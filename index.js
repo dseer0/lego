@@ -32,11 +32,11 @@ const createRaspApp = (x, y) => {
         height: 1024,
         x: x,
         y: y,
-        kiosk: true,
+        // kiosk: true,
         autoHideMenuBar: true,
         frame: false,
         resizable: false,
-        fullscreen: true,
+        // fullscreen: true,
         webPreferences: {
             preload: path.join(__dirname, 'RaspPreload.js')
         }
@@ -82,8 +82,8 @@ app.whenReady().then(() => {
     console.log(primaryDisplay)
     console.log(secondDisplay)
 
-    const primaryBounds = primaryDisplay.bounds
-    const secondBounds = secondDisplay.bounds
+    // const primaryBounds = primaryDisplay.bounds
+    // const secondBounds = secondDisplay.bounds
 
 
     const tv = createTVApp(600, 0)
@@ -91,10 +91,10 @@ app.whenReady().then(() => {
     // const rasp = createRaspApp(primaryBounds.x, primaryBounds.y) // for dev
 
 
-    // setTimeout((() => {
-    //     tv.webContents.send('coin')
-    //     rasp.webContents.send('coin')
-    // }), 3000)
+    setTimeout((() => {
+        tv.webContents.send('coin')
+        rasp.webContents.send('coin')
+    }), 3000)
 
     //na malym trwa losowanie
     //losowanie zakończone

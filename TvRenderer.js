@@ -50,7 +50,7 @@ window.electronAPI.onFinger(() => {
         switchToScreen(Screens.WaitGettingInfo)
         setTimeout(() => {
             switchToSelectingChar()
-        }, 3000)
+        }, 5000)
     }
 })
 

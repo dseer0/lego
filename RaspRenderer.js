@@ -47,8 +47,15 @@ const onPress = () => {
     if (currentScreen == Screens.PutFinger) {
         window.electronAPI.finger()
         switchToScreen(Screens.FingerReceived)
+
+        const video = document.getElementById("FingerReceivedVideo")
+        video.pause();
+        video.currentTime = 0;
+        video.play();
+
+
         setTimeout(() => {
             switchToScreen(Screens.SelectingCharacter)
-        }, 3000)
+        }, 5000)
     }
 }
