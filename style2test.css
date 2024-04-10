@@ -27,10 +27,11 @@
 }
 
 .postac {
-    height: 80%;
+    height: 1000px;
+    width: 450px;
     position: absolute;
-    left: 30%;
-    top: 600px;
+    left: 315px;
+    top: 420px;
 }
 
 .logos:before,
