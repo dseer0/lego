@@ -1,4 +1,5 @@
 const { app, BrowserWindow, screen, ipcMain } = require('electron')
+const { exec } = require('child_process');
 const path = require('node:path')
 // var Gpio = require('onoff').Gpio;
 // var pushButton = new Gpio(2, 'in', 'falling');
@@ -105,6 +106,25 @@ app.whenReady().then(() => {
 
     ipcMain.on('finger', (event) => {
         tv.webContents.send('finger')
+    })
+
+
+    ipcMain.on('print', (event, name) => {
+        const toPrint = name.name
+        // 'lpr -o fit-to-page ' + toPrint,
+        exec('lprm - && lpr -o fit-to-page ' + toPrint, (err, stdout, stderr) => {
+            if (err) {
+              // node couldn't execute the command
+              return;
+            }
+          
+            // the *entire* stdout and stderr (buffered)
+            console.log(`stdout: ${stdout}`);
+            console.log(`stderr: ${stderr}`);
+          });
+
+
+        console.log("PRINTING!!! " + toPrint)
     })
 
 

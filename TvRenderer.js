@@ -45,6 +45,7 @@ const switchToSelectedChar = () => {
 
     document.getElementById('wybranapostac').src = "imgs/postaciev2/" + rndInt + ".png";
     document.getElementById('wybranapostac').style.display = "block";
+    window.electronAPI.print("imgs/postaciev2/" + rndInt + ".png")
 
     currentScreen = Screens.SelectedCharacter
 
