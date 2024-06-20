@@ -41,11 +41,11 @@ const switchToSelectedChar = () => {
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
-    const rndInt = randomIntFromInterval(1, 49)
+    const rndInt = randomIntFromInterval(1, 48)
 
     document.getElementById('wybranapostac').src = "imgs/postaciev2/" + rndInt + ".png";
     document.getElementById('wybranapostac').style.display = "block";
-    window.electronAPI.print("imgs/postaciev2/" + rndInt + ".png")
+    window.electronAPI.print("imgs/postaciev2/" + rndInt + ".pdf")
 
     currentScreen = Screens.SelectedCharacter
 
