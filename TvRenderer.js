@@ -7,6 +7,12 @@ const Screens = {
 };
 
 var currentScreen = Screens.TossCoin
+function randomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+
+var rndInt = randomIntFromInterval(1, 47)
 
 
 const showScreen = (id) => {
@@ -37,15 +43,8 @@ const switchToSelectingChar = () => {
 const switchToSelectedChar = () => {
     hideAll()
     showScreen(Screens.SelectedCharacter)
-    function randomIntFromInterval(min, max) { // min and max included 
-        return Math.floor(Math.random() * (max - min + 1) + min)
-    }
-
-    const rndInt = randomIntFromInterval(1, 47)
-
     document.getElementById('wybranapostac').src = "imgs/postaciev2/" + rndInt + ".png";
     document.getElementById('wybranapostac').style.display = "block";
-    window.electronAPI.print("imgs/postaciev2/" + rndInt + ".pdf")
 
     currentScreen = Screens.SelectedCharacter
 
@@ -66,6 +65,9 @@ window.electronAPI.onCoin(() => {
 
 window.electronAPI.onFinger(() => {
     if (currentScreen == Screens.PutFinger) {
+        rndInt = randomIntFromInterval(1, 47)
+        window.electronAPI.print("imgs/postaciev2/" + rndInt + ".pdf")
+
         switchToScreen(Screens.WaitGettingInfo)
         setTimeout(() => {
             switchToSelectingChar()
