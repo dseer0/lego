@@ -41,7 +41,7 @@ const switchToSelectedChar = () => {
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
-    const rndInt = randomIntFromInterval(1, 48)
+    const rndInt = randomIntFromInterval(1, 47)
 
     document.getElementById('wybranapostac').src = "imgs/postaciev2/" + rndInt + ".png";
     document.getElementById('wybranapostac').style.display = "block";
