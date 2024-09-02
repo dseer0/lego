@@ -59,17 +59,12 @@ app.whenReady().then(() => {
             app.quit()
         }
     })
-    // const displays = screen.getAllDisplays()
+
     const primaryDisplay = screen.getPrimaryDisplay()
 
-    console.log(primaryDisplay)
-
-    // const primaryBounds = primaryDisplay.bounds
-    // const secondBounds = secondDisplay.bounds
 
 
     const tv = createTVApp(0, 0)
-    // const rasp = createRaspApp(primaryBounds.x, primaryBounds.y) // for dev
 
 
     setTimeout((() => {
