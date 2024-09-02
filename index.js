@@ -25,28 +25,8 @@ function enableWebServer() {
 enableWebServer();
 
 let doOnce = false
+let doOnceFinger = false
 
-
-const createRaspApp = (x, y) => {
-    const win = new BrowserWindow({
-        width: 600,
-        height: 1024,
-        x: x,
-        y: y,
-        kiosk: true,
-        autoHideMenuBar: true,
-        frame: false,
-        fullscreen: true,
-        alwaysOnTop: true,
-        resizable: false,
-        webPreferences: {
-            preload: path.join(__dirname, 'RaspPreload.js')
-        }
-    })
-
-    win.loadFile('RaspApp.html')
-    return win
-}
 
 const createTVApp = (x, y) => {
     const win = new BrowserWindow({
@@ -55,12 +35,11 @@ const createTVApp = (x, y) => {
         x: x,
         y: y,
         // kiosk: true,
-        kiosk: true,
-        autoHideMenuBar: true,
-        frame: false,
-        fullscreen: true,
-        alwaysOnTop: true,
-        resizable: false,
+        // autoHideMenuBar: true,
+        // frame: false,
+        // fullscreen: true,
+        // alwaysOnTop: true,
+        // resizable: false,
         webPreferences: {
             preload: path.join(__dirname, 'TvPreload.js')
         }
@@ -82,31 +61,25 @@ app.whenReady().then(() => {
     })
     // const displays = screen.getAllDisplays()
     const primaryDisplay = screen.getPrimaryDisplay()
-    const secondDisplay = screen.getAllDisplays().find(d => d.id != primaryDisplay.id)
 
     console.log(primaryDisplay)
-    console.log(secondDisplay)
 
     // const primaryBounds = primaryDisplay.bounds
     // const secondBounds = secondDisplay.bounds
 
 
-    const tv = createTVApp(600, 0)
-    const rasp = createRaspApp(0, 0)
+    const tv = createTVApp(0, 0)
     // const rasp = createRaspApp(primaryBounds.x, primaryBounds.y) // for dev
 
 
-    // setTimeout((() => {
-    //     tv.webContents.send('coin')
-    //     rasp.webContents.send('coin')
-    // }), 3000)
+    setTimeout((() => {
+        tv.webContents.send('coin')
+    }), 3000)
 
-    //na malym trwa losowanie
-    //losowanie zakończone
 
-    ipcMain.on('finger', (event) => {
+    setTimeout(() => {
         tv.webContents.send('finger')
-    })
+    }, 10000)
 
 
     ipcMain.on('print', (event, name) => {
@@ -114,14 +87,14 @@ app.whenReady().then(() => {
         // 'lpr -o fit-to-page ' + toPrint,
         exec('lprm - && lpr -o fit-to-page ' + toPrint, (err, stdout, stderr) => {
             if (err) {
-              // node couldn't execute the command
-              return;
+                // node couldn't execute the command
+                return;
             }
-          
+
             // the *entire* stdout and stderr (buffered)
             console.log(`stdout: ${stdout}`);
             console.log(`stderr: ${stderr}`);
-          });
+        });
 
 
         console.log("PRINTING!!! " + toPrint)
@@ -133,19 +106,27 @@ app.whenReady().then(() => {
         console.log(message + " " + sourceId + " (" + line + ")");
     });
 
-    rasp.webContents.on('console-message', (event, level, message, line, sourceId) => {
-        console.log(message + " " + sourceId + " (" + line + ")");
-    });
 
     ekspres.get("/gotMoney", (req, res) => {
         if (!doOnce) {
             console.log('Got it!')
             tv.webContents.send('coin')
-            rasp.webContents.send('coin')
             doOnce = true
         }
         setTimeout(() => {
             doOnce = false
+        }, 1500)
+
+        return res.json({ "status": true })
+    })
+
+    ekspres.get("/sendFinger", (req, res) => {
+        if (!doOnceFinger) {
+            tv.webContents.send('finger')
+            doOnceFinger = true
+        }
+        setTimeout(() => {
+            doOnceFinger = false
         }, 1500)
 
         return res.json({ "status": true })

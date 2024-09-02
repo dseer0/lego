@@ -65,10 +65,11 @@ window.electronAPI.onCoin(() => {
 
 window.electronAPI.onFinger(() => {
     if (currentScreen == Screens.PutFinger) {
+        switchToScreen(Screens.WaitGettingInfo)
+
         rndInt = randomIntFromInterval(1, 47)
         window.electronAPI.print("imgs/postaciev2/" + rndInt + ".pdf")
 
-        switchToScreen(Screens.WaitGettingInfo)
         setTimeout(() => {
             switchToSelectingChar()
             setTimeout(() => {
