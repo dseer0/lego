@@ -12,7 +12,7 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 
-var rndInt = randomIntFromInterval(1, 47)
+var rndInt = randomIntFromInterval(1, 62)
 
 
 const showScreen = (id) => {
@@ -67,7 +67,7 @@ window.electronAPI.onFinger(() => {
     if (currentScreen == Screens.PutFinger) {
         switchToScreen(Screens.WaitGettingInfo)
 
-        rndInt = randomIntFromInterval(1, 47)
+        rndInt = randomIntFromInterval(1, 62)
         window.electronAPI.print("imgs/postaciev2/" + rndInt + ".pdf")
 
         setTimeout(() => {
