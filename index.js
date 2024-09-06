@@ -67,14 +67,14 @@ app.whenReady().then(() => {
     const tv = createTVApp(0, 0)
 
 
-    setTimeout((() => {
-        tv.webContents.send('coin')
-    }), 3000)
+    // setTimeout((() => {
+    //     tv.webContents.send('coin')
+    // }), 3000)
 
 
-    setTimeout(() => {
-        tv.webContents.send('finger')
-    }, 10000)
+    // setTimeout(() => {
+    //     tv.webContents.send('finger')
+    // }, 10000)
 
 
     ipcMain.on('print', (event, name) => {
