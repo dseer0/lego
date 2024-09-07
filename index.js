@@ -34,12 +34,12 @@ const createTVApp = (x, y) => {
         height: 1920,
         x: x,
         y: y,
-        // kiosk: true,
-        // autoHideMenuBar: true,
-        // frame: false,
-        // fullscreen: true,
-        // alwaysOnTop: true,
-        // resizable: false,
+        kiosk: true,
+        autoHideMenuBar: true,
+        frame: false,
+        fullscreen: true,
+        alwaysOnTop: true,
+        resizable: false,
         webPreferences: {
             preload: path.join(__dirname, 'TvPreload.js')
         }
